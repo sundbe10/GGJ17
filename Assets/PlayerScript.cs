@@ -6,6 +6,7 @@ public class PlayerScript : MonoBehaviour {
 
 	public float upForce = 100f;
 	public float horzForce = 20f;
+	public float armForceFactor = .05f;
 
 	private GameObject[] bodySegments;
 	private bool isInflating;
@@ -49,7 +50,7 @@ public class PlayerScript : MonoBehaviour {
 									Vector3.right * Input.GetAxis("Left_Stick_H") * horzForce;
 				rb.AddForce(totalForce);
 
-				Debug.Log(i + " = " + segmentForceFactor + "  " + bodysegment.transform.up.normalized + " / " + Vector3.up);
+				//Debug.Log(i + " = " + segmentForceFactor + "  " + bodysegment.transform.up.normalized + " / " + Vector3.up);
 				previousSegmentUp = bodysegment.transform.up.normalized;
 			}
 			else if(bodysegment.tag == "LeftArm")
@@ -57,14 +58,14 @@ public class PlayerScript : MonoBehaviour {
 				{
 					float currentSegmentAlignment = Vector3.Dot(armSegment.transform.up.normalized, previousSegmentUp);
 					float segmentForceFactor = (1 - currentSegmentAlignment);
-					armSegment.AddForce(-transform.right * upForce/100 * segmentForceFactor);
+					armSegment.AddForce(-transform.right * upForce * armForceFactor * segmentForceFactor);
 				}
 			else if(bodysegment.tag == "RightArm")
 				foreach (Rigidbody armSegment in bodysegment.GetComponentsInChildren<Rigidbody>())
 				{
 					float currentSegmentAlignment = Vector3.Dot(armSegment.transform.up.normalized, previousSegmentUp);
 					float segmentForceFactor = (1 - currentSegmentAlignment);
-					armSegment.AddForce(transform.right * upForce/100 * segmentForceFactor);
+					armSegment.AddForce(transform.right * upForce * armForceFactor * segmentForceFactor);
 				}
 		}
 		yield return null;
