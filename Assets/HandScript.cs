@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour {
+public class HandScript : MonoBehaviour {
 
-	public float upForce = 100f;
+	public float horzForce = 20f;
 
 	Rigidbody rigidBody;
 
@@ -12,12 +12,10 @@ public class PlayerScript : MonoBehaviour {
 	void Start () {
 		rigidBody = GetComponent<Rigidbody>();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetButton("Jump")){
-			Debug.Log("up");
-			rigidBody.AddForce(Vector3.up*upForce);
-		}
+		rigidBody.AddForce(this.transform.up * Input.GetAxis("Vertical") * horzForce);
+		rigidBody.AddForce(this.transform.right * Input.GetAxis("Horizontal") * horzForce);
 	}
 }
