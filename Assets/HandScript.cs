@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class HandScript : MonoBehaviour {
 
-	public enum ControlStick{
-		Left,
-		Right
-	}
-	public ControlStick controlStick;
 	public float horzForce = 20f;
 
 	Rigidbody rigidBody;
@@ -16,13 +11,13 @@ public class HandScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rigidBody = GetComponent<Rigidbody>();
-		Debug.Log(controlStick.ToString()+"_Stick_V");
+		//Debug.Log(controlStick.ToString()+"_Stick_V");
 	}
 
 	// Update is called once per frame
 	void Update () {
-		Debug.Log(Input.GetAxis(controlStick.ToString()+"_Stick_V"));
-		rigidBody.AddForce(Vector3.up * Input.GetAxis(controlStick.ToString()+"_Stick_V") * horzForce);
-		rigidBody.AddForce(Vector3.right * Input.GetAxis(controlStick.ToString()+"_Stick_H") * horzForce);
+		//Debug.Log(Input.GetAxis(controlStick.ToString()+"_Stick_V"));
+		rigidBody.AddForce(Vector3.up * Input.GetAxis("Right_Stick_V") * horzForce);
+		rigidBody.AddForce(Vector3.right * Input.GetAxis("Right_Stick_H") * horzForce);
 	}
 }
