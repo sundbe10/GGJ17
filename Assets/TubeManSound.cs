@@ -18,7 +18,7 @@ public class TubeManSound : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		headVelocity = headRigidbody.velocity.magnitude;
-		Debug.Log(headVelocity);
+		//Debug.Log(headVelocity);
 		audioSource.volume = Mathf.Clamp(headVelocity/3f, 0f, 1f);
 		audioSource.pitch = Mathf.Clamp(headVelocity/7f, .8f, 1.3f);
 	}
