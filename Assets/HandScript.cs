@@ -16,6 +16,6 @@ public class HandScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		rigidBody.AddForce(this.transform.up * Input.GetAxis("Vertical") * horzForce);
-		rigidBody.AddForce(this.transform.right * Input.GetAxis("Horizontal") * horzForce);
+		rigidBody.AddForce(this.transform.forward * Input.GetAxis("Horizontal") * horzForce);
 	}
 }
