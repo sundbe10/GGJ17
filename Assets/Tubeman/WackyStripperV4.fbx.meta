@@ -1,0 +1,534 @@
+fileFormatVersion: 2
+guid: 52630eb5b81a942449888547ae7247b8
+timeCreated: 1485042441
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: back
+    100002: group
+    100004: joint1
+    100006: joint10
+    100008: joint11
+    100010: joint13
+    100012: joint14
+    100014: joint15
+    100016: joint16
+    100018: joint17
+    100020: joint18
+    100022: joint18 1
+    100024: joint18 10
+    100026: joint18 11
+    100028: joint18 12
+    100030: joint18 13
+    100032: joint18 14
+    100034: joint18 15
+    100036: joint18 16
+    100038: joint18 17
+    100040: joint18 18
+    100042: joint18 19
+    100044: joint18 2
+    100046: joint18 20
+    100048: joint18 21
+    100050: joint18 22
+    100052: joint18 23
+    100054: joint18 3
+    100056: joint18 4
+    100058: joint18 5
+    100060: joint18 6
+    100062: joint18 7
+    100064: joint18 8
+    100066: joint18 9
+    100068: joint19
+    100070: joint19 1
+    100072: joint19 10
+    100074: joint19 11
+    100076: joint19 12
+    100078: joint19 13
+    100080: joint19 14
+    100082: joint19 15
+    100084: joint19 16
+    100086: joint19 17
+    100088: joint19 18
+    100090: joint19 19
+    100092: joint19 2
+    100094: joint19 20
+    100096: joint19 21
+    100098: joint19 22
+    100100: joint19 23
+    100102: joint19 3
+    100104: joint19 4
+    100106: joint19 5
+    100108: joint19 6
+    100110: joint19 7
+    100112: joint19 8
+    100114: joint19 9
+    100116: joint2
+    100118: joint20
+    100120: joint20 1
+    100122: joint20 10
+    100124: joint20 11
+    100126: joint20 12
+    100128: joint20 13
+    100130: joint20 14
+    100132: joint20 15
+    100134: joint20 16
+    100136: joint20 17
+    100138: joint20 18
+    100140: joint20 19
+    100142: joint20 2
+    100144: joint20 20
+    100146: joint20 21
+    100148: joint20 22
+    100150: joint20 23
+    100152: joint20 3
+    100154: joint20 4
+    100156: joint20 5
+    100158: joint20 6
+    100160: joint20 7
+    100162: joint20 8
+    100164: joint20 9
+    100166: joint21
+    100168: joint21 1
+    100170: joint21 2
+    100172: joint21 3
+    100174: joint21 4
+    100176: joint21 5
+    100178: joint21 6
+    100180: joint21 7
+    100182: joint21 8
+    100184: joint21 9
+    100186: joint22
+    100188: joint23
+    100190: joint24
+    100192: joint25
+    100194: joint26
+    100196: joint27
+    100198: joint28
+    100200: joint29
+    100202: joint3
+    100204: joint30
+    100206: joint31
+    100208: joint32
+    100210: joint33
+    100212: joint34
+    100214: joint35
+    100216: joint36
+    100218: joint37
+    100220: joint38
+    100222: joint39
+    100224: joint4
+    100226: joint40
+    100228: joint41
+    100230: joint42
+    100232: joint43
+    100234: joint44
+    100236: joint5
+    100238: joint6
+    100240: joint7
+    100242: joint8
+    100244: joint9
+    100246: left
+    100248: pasted__pCylinder3
+    100250: pCylinder2
+    100252: polySurface1
+    100254: polySurface10
+    100256: polySurface11
+    100258: polySurface12
+    100260: polySurface13
+    100262: polySurface14
+    100264: polySurface15
+    100266: polySurface16
+    100268: polySurface17
+    100270: polySurface18
+    100272: polySurface19
+    100274: polySurface2
+    100276: polySurface20
+    100278: polySurface21
+    100280: polySurface22
+    100282: polySurface23
+    100284: polySurface24
+    100286: polySurface25
+    100288: polySurface3
+    100290: polySurface4
+    100292: polySurface5
+    100294: polySurface6
+    100296: polySurface7
+    100298: polySurface8
+    100300: polySurface9
+    100302: pPlane1
+    100304: pPlane10
+    100306: pPlane11
+    100308: pPlane12
+    100310: pPlane13
+    100312: pPlane14
+    100314: pPlane15
+    100316: pPlane16
+    100318: pPlane17
+    100320: pPlane18
+    100322: pPlane19
+    100324: pPlane2
+    100326: pPlane20
+    100328: pPlane23
+    100330: pPlane3
+    100332: pPlane4
+    100334: pPlane44
+    100336: pPlane45
+    100338: pPlane46
+    100340: pPlane47
+    100342: pPlane48
+    100344: pPlane49
+    100346: pPlane5
+    100348: pPlane6
+    100350: pPlane7
+    100352: pPlane8
+    100354: pPlane9
+    100356: transform1
+    100358: transform10
+    100360: transform11
+    100362: transform12
+    100364: transform13
+    100366: transform14
+    100368: transform15
+    100370: transform16
+    100372: transform17
+    100374: transform18
+    100376: transform19
+    100378: transform2
+    100380: transform20
+    100382: transform21
+    100384: transform3
+    100386: transform4
+    100388: transform42
+    100390: transform43
+    100392: transform44
+    100394: transform45
+    100396: transform5
+    100398: transform6
+    100400: transform7
+    100402: transform8
+    100404: transform9
+    100406: //RootNode
+    400000: back
+    400002: group
+    400004: joint1
+    400006: joint10
+    400008: joint11
+    400010: joint13
+    400012: joint14
+    400014: joint15
+    400016: joint16
+    400018: joint17
+    400020: joint18
+    400022: joint18 1
+    400024: joint18 10
+    400026: joint18 11
+    400028: joint18 12
+    400030: joint18 13
+    400032: joint18 14
+    400034: joint18 15
+    400036: joint18 16
+    400038: joint18 17
+    400040: joint18 18
+    400042: joint18 19
+    400044: joint18 2
+    400046: joint18 20
+    400048: joint18 21
+    400050: joint18 22
+    400052: joint18 23
+    400054: joint18 3
+    400056: joint18 4
+    400058: joint18 5
+    400060: joint18 6
+    400062: joint18 7
+    400064: joint18 8
+    400066: joint18 9
+    400068: joint19
+    400070: joint19 1
+    400072: joint19 10
+    400074: joint19 11
+    400076: joint19 12
+    400078: joint19 13
+    400080: joint19 14
+    400082: joint19 15
+    400084: joint19 16
+    400086: joint19 17
+    400088: joint19 18
+    400090: joint19 19
+    400092: joint19 2
+    400094: joint19 20
+    400096: joint19 21
+    400098: joint19 22
+    400100: joint19 23
+    400102: joint19 3
+    400104: joint19 4
+    400106: joint19 5
+    400108: joint19 6
+    400110: joint19 7
+    400112: joint19 8
+    400114: joint19 9
+    400116: joint2
+    400118: joint20
+    400120: joint20 1
+    400122: joint20 10
+    400124: joint20 11
+    400126: joint20 12
+    400128: joint20 13
+    400130: joint20 14
+    400132: joint20 15
+    400134: joint20 16
+    400136: joint20 17
+    400138: joint20 18
+    400140: joint20 19
+    400142: joint20 2
+    400144: joint20 20
+    400146: joint20 21
+    400148: joint20 22
+    400150: joint20 23
+    400152: joint20 3
+    400154: joint20 4
+    400156: joint20 5
+    400158: joint20 6
+    400160: joint20 7
+    400162: joint20 8
+    400164: joint20 9
+    400166: joint21
+    400168: joint21 1
+    400170: joint21 2
+    400172: joint21 3
+    400174: joint21 4
+    400176: joint21 5
+    400178: joint21 6
+    400180: joint21 7
+    400182: joint21 8
+    400184: joint21 9
+    400186: joint22
+    400188: joint23
+    400190: joint24
+    400192: joint25
+    400194: joint26
+    400196: joint27
+    400198: joint28
+    400200: joint29
+    400202: joint3
+    400204: joint30
+    400206: joint31
+    400208: joint32
+    400210: joint33
+    400212: joint34
+    400214: joint35
+    400216: joint36
+    400218: joint37
+    400220: joint38
+    400222: joint39
+    400224: joint4
+    400226: joint40
+    400228: joint41
+    400230: joint42
+    400232: joint43
+    400234: joint44
+    400236: joint5
+    400238: joint6
+    400240: joint7
+    400242: joint8
+    400244: joint9
+    400246: left
+    400248: pasted__pCylinder3
+    400250: pCylinder2
+    400252: polySurface1
+    400254: polySurface10
+    400256: polySurface11
+    400258: polySurface12
+    400260: polySurface13
+    400262: polySurface14
+    400264: polySurface15
+    400266: polySurface16
+    400268: polySurface17
+    400270: polySurface18
+    400272: polySurface19
+    400274: polySurface2
+    400276: polySurface20
+    400278: polySurface21
+    400280: polySurface22
+    400282: polySurface23
+    400284: polySurface24
+    400286: polySurface25
+    400288: polySurface3
+    400290: polySurface4
+    400292: polySurface5
+    400294: polySurface6
+    400296: polySurface7
+    400298: polySurface8
+    400300: polySurface9
+    400302: pPlane1
+    400304: pPlane10
+    400306: pPlane11
+    400308: pPlane12
+    400310: pPlane13
+    400312: pPlane14
+    400314: pPlane15
+    400316: pPlane16
+    400318: pPlane17
+    400320: pPlane18
+    400322: pPlane19
+    400324: pPlane2
+    400326: pPlane20
+    400328: pPlane23
+    400330: pPlane3
+    400332: pPlane4
+    400334: pPlane44
+    400336: pPlane45
+    400338: pPlane46
+    400340: pPlane47
+    400342: pPlane48
+    400344: pPlane49
+    400346: pPlane5
+    400348: pPlane6
+    400350: pPlane7
+    400352: pPlane8
+    400354: pPlane9
+    400356: transform1
+    400358: transform10
+    400360: transform11
+    400362: transform12
+    400364: transform13
+    400366: transform14
+    400368: transform15
+    400370: transform16
+    400372: transform17
+    400374: transform18
+    400376: transform19
+    400378: transform2
+    400380: transform20
+    400382: transform21
+    400384: transform3
+    400386: transform4
+    400388: transform42
+    400390: transform43
+    400392: transform44
+    400394: transform45
+    400396: transform5
+    400398: transform6
+    400400: transform7
+    400402: transform8
+    400404: transform9
+    400406: //RootNode
+    4300000: polySurface1
+    4300002: polySurface2
+    4300004: polySurface3
+    4300006: polySurface4
+    4300008: polySurface5
+    4300010: polySurface6
+    4300012: polySurface7
+    4300014: polySurface8
+    4300016: polySurface9
+    4300018: polySurface10
+    4300020: polySurface11
+    4300022: polySurface12
+    4300024: polySurface13
+    4300026: polySurface14
+    4300028: polySurface15
+    4300030: polySurface16
+    4300032: polySurface17
+    4300034: polySurface18
+    4300036: polySurface19
+    4300038: polySurface20
+    4300040: polySurface21
+    4300042: polySurface22
+    4300044: polySurface23
+    4300046: polySurface24
+    4300048: polySurface25
+    9500000: //RootNode
+    13700000: polySurface1
+    13700002: polySurface10
+    13700004: polySurface11
+    13700006: polySurface12
+    13700008: polySurface13
+    13700010: polySurface14
+    13700012: polySurface15
+    13700014: polySurface16
+    13700016: polySurface17
+    13700018: polySurface18
+    13700020: polySurface19
+    13700022: polySurface2
+    13700024: polySurface20
+    13700026: polySurface21
+    13700028: polySurface22
+    13700030: polySurface23
+    13700032: polySurface24
+    13700034: polySurface25
+    13700036: polySurface3
+    13700038: polySurface4
+    13700040: polySurface5
+    13700042: polySurface6
+    13700044: polySurface7
+    13700046: polySurface8
+    13700048: polySurface9
+  materials:
+    importMaterials: 1
+    materialName: 1
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 20
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
