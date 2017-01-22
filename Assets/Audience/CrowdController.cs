@@ -12,14 +12,6 @@ public class CrowdController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		MakeAudience();
-		Animation[] AudienceMembers = gameObject.GetComponentsInChildren<Animation>();
-		foreach(Animation anim in AudienceMembers){
-			string thisAnimation = names[Random.Range(0,5)];
-
-			anim.wrapMode = WrapMode.Loop;
-			anim.CrossFade(thisAnimation);
-			anim[thisAnimation].time = Random.Range(0f,3f);
-		}
 	}
 
 	void MakeAudience(){
