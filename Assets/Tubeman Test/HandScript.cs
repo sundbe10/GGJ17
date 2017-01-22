@@ -40,7 +40,7 @@ public class HandScript : MonoBehaviour {
 			if (GetComponents<CharacterJoint>().Length == 1)
 			{
 				CharacterJoint characterJoint = gameObject.AddComponent<CharacterJoint>();
-				characterJoint.anchor = new Vector3(0,1,0);
+				characterJoint.anchor = new Vector3(0,0,0);
 				characterJoint.connectedBody = col.GetComponent<Rigidbody>();
 
 				SoftJointLimit lowLimit = new SoftJointLimit();

@@ -16,8 +16,9 @@ public class PlayerScript : MonoBehaviour {
 		isInflating = false;
 		Debug.Log(transform.childCount);
 		bodySegments = new GameObject[transform.childCount];
-		for (int i = 0; i < transform.childCount; ++i)
+		for (int i = 0; i < transform.childCount; ++i){
 			bodySegments[i] = transform.GetChild(i).gameObject;
+		}
 	}
 	
 	// Update is called once per frame
@@ -44,7 +45,7 @@ public class PlayerScript : MonoBehaviour {
 
 			if (rb != null)
 			{
-				float currentSegmentAlignment = Vector3.Dot(bodysegment.transform.up.normalized, previousSegmentUp);
+				float currentSegmentAlignment = Vector3.Dot(-bodysegment.transform.right.normalized, previousSegmentUp);
 				float segmentForceFactor = (1 - currentSegmentAlignment);
 				Vector3 totalForce = Vector3.up * upForce * segmentForceFactor +
 									Vector3.forward * Input.GetAxis("Left_Stick_V") * horzForce +
