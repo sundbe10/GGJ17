@@ -8,6 +8,8 @@ public class HandScript : MonoBehaviour {
 	public Hand hand;
 	public float horzForce = 20f;
 	public bool isAttached = false;
+	public GameObject grabbedObject = null;
+	private ScoreManager scoreManager=  null;
 
 	int playerNum;
 	bool isAi;
@@ -18,8 +20,9 @@ public class HandScript : MonoBehaviour {
 	void Awake () {
 		rigidBody = GetComponent<Rigidbody>();
 		selfLayer = this.gameObject.layer;
-		playerNum = GetComponentsInParent<PlayerScript>()[0].playerNum;
-		isAi = GetComponentsInParent<PlayerScript>()[0].isAi;
+		playerNum = GetComponentInParent<PlayerScript>().playerNum;
+		isAi = GetComponentInParent<PlayerScript>().isAi;
+		scoreManager = GetComponentInParent<ScoreManager>();
 		//Debug.Log(controlStick.ToString()+"_Stick_V");
 	}
 
@@ -51,6 +54,13 @@ public class HandScript : MonoBehaviour {
 				characterJoint.highTwistLimit = highLimit;
 
 			}
+			grabbedObject = col.gameObject;
+			GrabBonusScript grabBonus = grabbedObject.GetComponent<GrabBonusScript>();
+			if (grabBonus != null && !isAttached)
+			{
+				grabBonus.SetGrabbed(true);
+				scoreManager.AddBonusObject(grabBonus);
+			}
 			isAttached = true;
 		}
 	}
@@ -63,9 +73,19 @@ public class HandScript : MonoBehaviour {
 			(hand == HandScript.Hand.RIGHT && Input.GetAxis("Fire2_"+playerNum) < 0))
 		{
 			CharacterJoint[] joints = GetComponents<CharacterJoint>();
-			isAttached = false;
-			for (int i = joints.Length-1; i > 0; --i)
-				DestroyImmediate(joints[i]);
+			if (grabbedObject != null)
+			{
+				GrabBonusScript grabBonus = grabbedObject.GetComponent<GrabBonusScript>();
+				if (grabBonus != null && isAttached)
+				{
+					grabBonus.SetGrabbed(false);
+					scoreManager.RemoveBonusObject(grabBonus);
+				}
+				isAttached = false;
+				grabbedObject = null;
+				for (int i = joints.Length-1; i > 0; --i)
+					DestroyImmediate(joints[i]);
+			}
 		}
 	}
 }

@@ -4,28 +4,37 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour {
 
-	public LayerMask layerMask;
 	public float affectRadius;
 	private List<GameObject> audienceMembers;
 	private SphereCollider affectTrigger;
 	private int audienceLayer = 10;
 	private PlayerScript playerScript = null;
-	private HandScript[] handscripts = null;
+	private Transform baseTransform = null;
+	private List<GrabBonusScript> bonuses;
 
 	// Use this for initialization
-	void Awake () {
+	void Start () {
 		affectRadius = 2;
 		audienceMembers = new List<GameObject>();
-		affectTrigger = GetComponent<SphereCollider>();
+		affectTrigger = GetComponentInChildren<SphereCollider>();
 		playerScript = GetComponent<PlayerScript>();
-		handscripts = GetComponentsInChildren<HandScript>();
+		baseTransform = playerScript.baseObject.transform;
+		bonuses = new List<GrabBonusScript>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (playerScript != null)
-			affectRadius = playerScript.laggyDelta.magnitude;
-		affectTrigger.radius = affectRadius;
+		affectRadius -= Time.deltaTime;
+		affectRadius = Mathf.Max(affectRadius, playerScript.laggyDelta.magnitude);
+
+		float bonusRadius = 0f;
+		// Bonus Objects
+		foreach (GrabBonusScript bonus in bonuses)
+		{
+			bonusRadius += bonus.effectiveBonusRadius;
+		}
+
+		affectTrigger.radius = Mathf.Lerp(affectTrigger.radius, bonusRadius + affectRadius, Time.deltaTime);
 	}
 
 	void OnDestory() {
@@ -33,7 +42,8 @@ public class ScoreManager : MonoBehaviour {
 	}
 
 	void OnDrawGizmos() {
-		Gizmos.DrawWireSphere(transform.position, affectRadius);
+		if (baseTransform != null)
+			Gizmos.DrawWireSphere(baseTransform.position, affectTrigger.radius);
 		if (audienceMembers != null)
 			foreach (GameObject obj in audienceMembers)
 			{
@@ -52,6 +62,16 @@ public class ScoreManager : MonoBehaviour {
 		GameObject obj = col.gameObject;
 		if (obj.layer == audienceLayer && audienceMembers.Contains(obj))
 			audienceMembers.Remove(obj);
+	}
+
+	public void AddBonusObject(GrabBonusScript bonus)
+	{
+		bonuses.Add(bonus);
+	}
+
+	public void RemoveBonusObject(GrabBonusScript bonus)
+	{
+		bonuses.Remove(bonus);
 	}
 }
 

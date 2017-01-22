@@ -11,6 +11,7 @@ public class PlayerScript : MonoBehaviour {
 	public bool isAi = false;
 
 	private GameObject[] bodySegments;
+	public GameObject baseObject = null;
 	public bool isInflating;
 
 	private Vector3[] currentVelocities;
@@ -18,8 +19,8 @@ public class PlayerScript : MonoBehaviour {
 	private Vector3[] deltaVelocities;
 	private Vector3 summedDeltas;
 	public Vector3 laggyDelta;
-	public float attackTime = 3f;
-	public float releaseTime = 3f;
+	public float attackTime = .5f;
+	public float releaseTime = 2f;
 
 
 	// Use this for initialization
@@ -29,6 +30,7 @@ public class PlayerScript : MonoBehaviour {
 		for (int i = 0; i < transform.childCount; ++i){
 			bodySegments[i] = transform.GetChild(i).gameObject;
 		}
+		baseObject = bodySegments[0];
 		currentVelocities = new Vector3[bodySegments.Length];
 		previousVelocities = new Vector3[bodySegments.Length];
 		deltaVelocities = new Vector3[bodySegments.Length];

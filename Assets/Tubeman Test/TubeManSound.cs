@@ -46,11 +46,12 @@ public class TubeManSound : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (playerScript.isInflating)
+		if (playerScript.isInflating && !isInflating)
 		{
 			StopAllCoroutines();
 			StartCoroutine(Inflate());
-		}else{
+		}
+		else if (!playerScript.isInflating && isInflating){
 			StopAllCoroutines();
 			StartCoroutine(Deflate());
 		}
