@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TubeManSound : MonoBehaviour {
 
+	private PlayerScript playerScript;
+
 	private AudioSource audioSource = null;
 	private Rigidbody headRigidbody = null;
 	private float headVelocity;
@@ -33,6 +35,7 @@ public class TubeManSound : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+		playerScript = GetComponentsInParent<PlayerScript>()[0];
 		InitAudioSources(); 
 		isInflating = false;
 		audioSource = GetComponent<AudioSource>();
@@ -43,21 +46,13 @@ public class TubeManSound : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButton("Jump_1"))
+		if (playerScript.isInflating)
 		{
-			if (!isInflating)
-			{
-				StopAllCoroutines();
-				StartCoroutine(Inflate());
-			}
-		}
-		else
-		{
-			if (isInflating)
-			{
-				StopAllCoroutines();
-				StartCoroutine(Deflate());
-			}
+			StopAllCoroutines();
+			StartCoroutine(Inflate());
+		}else{
+			StopAllCoroutines();
+			StartCoroutine(Deflate());
 		}
 
 		headVelocity = headRigidbody.velocity.magnitude;

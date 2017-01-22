@@ -8,9 +8,10 @@ public class PlayerScript : MonoBehaviour {
 	public float horzForce = 20f;
 	public float armForceFactor = .05f;
 	public int playerNum = 1;
+	public bool isAi = false;
+	public bool isInflating;
 
 	private GameObject[] bodySegments;
-	private bool isInflating;
 
 	// Use this for initialization
 	void Awake () {
@@ -23,7 +24,7 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(Input.GetButton("Jump_"+playerNum) && !isInflating){
+		if(Input.GetButton("Jump_"+playerNum) && !isInflating && !isAi){
 			StartCoroutine(Inflate());
 		}
 		else
@@ -38,6 +39,9 @@ public class PlayerScript : MonoBehaviour {
 		int segmentCount = bodySegments.Length;
 		Vector3 previousSegmentUp = Vector3.up;
 
+		Vector3 userHForce = Vector3.right * Input.GetAxis("Left_Stick_H_"+playerNum);
+		Vector3 userVForce = Vector3.forward * Input.GetAxis("Left_Stick_V_"+playerNum);
+
 		for (int i = 0; i < segmentCount; ++i)
 		{
 			GameObject bodysegment = bodySegments[i];
@@ -48,8 +52,8 @@ public class PlayerScript : MonoBehaviour {
 				float currentSegmentAlignment = Vector3.Dot(-bodysegment.transform.right.normalized, previousSegmentUp);
 				float segmentForceFactor = (1 - currentSegmentAlignment);
 				Vector3 totalForce = Vector3.up * upForce * segmentForceFactor +
-									Vector3.forward * Input.GetAxis("Left_Stick_V_"+playerNum) * horzForce +
-									Vector3.right * Input.GetAxis("Left_Stick_H_"+playerNum) * horzForce;
+						userHForce * horzForce +
+						userVForce * horzForce;
 				rb.AddForce(totalForce);
 
 				//Debug.Log(i + " = " + segmentForceFactor + "  " + bodysegment.transform.up.normalized + " / " + Vector3.up);
