@@ -37,14 +37,21 @@ public class PlayerScript : MonoBehaviour {
 
 		laggyDelta = Vector3.zero;
 	}
+
+	void Start(){
+		if(isAi) AIMove();
+	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(Input.GetButton("Jump_"+playerNum) && !isAi){
-			isInflating = true;
+		if(!isAi){
+			if(Input.GetButton("Jump_"+playerNum)){
+				isInflating = true;
+			}
+			else{
+				isInflating = false;
+			}
 		}
-		else
-			isInflating = false;
 
 		UpdateCharacter();
 
@@ -63,8 +70,8 @@ public class PlayerScript : MonoBehaviour {
 		int segmentCount = bodySegments.Length;
 		Vector3 previousSegmentUp = Vector3.up;
 
-		Vector3 userHForce = Vector3.right * Input.GetAxis("Left_Stick_H_"+playerNum);
-		Vector3 userVForce = Vector3.forward * Input.GetAxis("Left_Stick_V_"+playerNum);
+		Vector3 userHForce = isAi ? Vector3.zero : Vector3.right * Input.GetAxis("Left_Stick_H_"+playerNum);
+		Vector3 userVForce = isAi ? Vector3.zero : Vector3.forward * Input.GetAxis("Left_Stick_V_"+playerNum);
 
 		for (int i = 0; i < segmentCount; ++i)
 		{
@@ -109,6 +116,16 @@ public class PlayerScript : MonoBehaviour {
 				deltaVelocities[i] = currentVelocities[i] - previousVelocities[i];
 			}
 		}
+	}
+
+	void AIMove(){
+		isInflating = true;
+		Invoke("AIRest", Random.Range(0.1f,2));
+	}
+
+	void AIRest(){
+		isInflating = false;
+		Invoke("AIMove", Random.Range(0.1f,1));
 	}
 
 //	void OnDrawGizmos() {
