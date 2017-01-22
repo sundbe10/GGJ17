@@ -38,7 +38,7 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(Input.GetButton("Jump_"+playerNum)){
+		if(Input.GetButton("Jump_"+playerNum) && !isAi){
 			isInflating = true;
 		}
 		else
@@ -75,12 +75,6 @@ public class PlayerScript : MonoBehaviour {
 				previousVelocities[i] = currentVelocities[i];
 				currentVelocities[i] = rb.velocity;
 				deltaVelocities[i] = currentVelocities[i] - previousVelocities[i];
-				float currentSegmentAlignment = Vector3.Dot(-bodysegment.transform.right.normalized, previousSegmentUp);
-				float segmentForceFactor = (1 - currentSegmentAlignment);
-				Vector3 totalForce = Vector3.up * upForce * segmentForceFactor +
-						userHForce * horzForce +
-						userVForce * horzForce;
-				rb.AddForce(totalForce);
 
 				// Apply Inflation Physics
 				if (isInflating)
@@ -88,8 +82,8 @@ public class PlayerScript : MonoBehaviour {
 					float currentSegmentAlignment = Vector3.Dot(-bodysegment.transform.right.normalized, previousSegmentUp);
 					float segmentForceFactor = (1 - currentSegmentAlignment);
 					Vector3 totalForce = Vector3.up * upForce * segmentForceFactor +
-										Vector3.forward * Input.GetAxis("Left_Stick_V_"+playerNum) * horzForce +
-										Vector3.right * Input.GetAxis("Left_Stick_H_"+playerNum) * horzForce;
+						userHForce * horzForce +
+						userVForce * horzForce;
 					rb.AddForce(totalForce);
 
 					previousSegmentUp = bodysegment.transform.up.normalized;
