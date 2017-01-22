@@ -7,6 +7,7 @@ public class PlayerScript : MonoBehaviour {
 	public float upForce = 100f;
 	public float horzForce = 20f;
 	public float armForceFactor = .05f;
+	public int playerNum = 1;
 
 	private GameObject[] bodySegments;
 	private bool isInflating;
@@ -23,7 +24,7 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(Input.GetButton("Jump") && !isInflating){
+		if(Input.GetButton("Jump_"+playerNum) && !isInflating){
 			StartCoroutine(Inflate());
 		}
 		else
@@ -48,8 +49,8 @@ public class PlayerScript : MonoBehaviour {
 				float currentSegmentAlignment = Vector3.Dot(-bodysegment.transform.right.normalized, previousSegmentUp);
 				float segmentForceFactor = (1 - currentSegmentAlignment);
 				Vector3 totalForce = Vector3.up * upForce * segmentForceFactor +
-									Vector3.forward * Input.GetAxis("Left_Stick_V") * horzForce +
-									Vector3.right * Input.GetAxis("Left_Stick_H") * horzForce;
+									Vector3.forward * Input.GetAxis("Left_Stick_V_"+playerNum) * horzForce +
+									Vector3.right * Input.GetAxis("Left_Stick_H_"+playerNum) * horzForce;
 				rb.AddForce(totalForce);
 
 				//Debug.Log(i + " = " + segmentForceFactor + "  " + bodysegment.transform.up.normalized + " / " + Vector3.up);
