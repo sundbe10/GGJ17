@@ -6,8 +6,7 @@ public class CrowdController : MonoBehaviour {
 	public int numberOfPeople;
 	public GameObject[] audiencePrefabs;
 
-	private string[] names = {"idle","applause","applause2","celebration","celebration2","celebration3"};
-	private GameObject[] audienceMembers;
+	GameObject[] audienceMembers;
 
 	// Use this for initialization
 	void Start () {
