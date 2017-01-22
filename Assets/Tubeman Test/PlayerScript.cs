@@ -55,19 +55,10 @@ public class PlayerScript : MonoBehaviour {
 				//Debug.Log(i + " = " + segmentForceFactor + "  " + bodysegment.transform.up.normalized + " / " + Vector3.up);
 				previousSegmentUp = bodysegment.transform.up.normalized;
 			}
-			else if(bodysegment.tag == "LeftArm")
+			else
 				foreach (Rigidbody armSegment in bodysegment.GetComponentsInChildren<Rigidbody>())
 				{
-					float currentSegmentAlignment = Vector3.Dot(armSegment.transform.up.normalized, previousSegmentUp);
-					float segmentForceFactor = (1 - currentSegmentAlignment);
-					armSegment.AddForce(-transform.right * upForce * armForceFactor * segmentForceFactor);
-				}
-			else if(bodysegment.tag == "RightArm")
-				foreach (Rigidbody armSegment in bodysegment.GetComponentsInChildren<Rigidbody>())
-				{
-					float currentSegmentAlignment = Vector3.Dot(armSegment.transform.up.normalized, previousSegmentUp);
-					float segmentForceFactor = (1 - currentSegmentAlignment);
-					armSegment.AddForce(transform.right * upForce * armForceFactor * segmentForceFactor);
+					armSegment.AddForce(transform.up * upForce * armForceFactor);
 				}
 		}
 		yield return null;
