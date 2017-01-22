@@ -89,6 +89,7 @@ public class TubeManSound : MonoBehaviour {
 		fanLoop.loop = true;
 		fanLoop.volume = 0f;
 		fanLoop.pitch = .75f;
+		fanLoop.spatialBlend = .75f;
 
 		fanStartStop = baseObj.AddComponent<AudioSource>();
 		fanStartStop.clip = fanStartWave;
@@ -96,11 +97,14 @@ public class TubeManSound : MonoBehaviour {
 		fanStartStop.loop = false;
 		fanStartStop.volume = 0f;
 		fanStartStop.pitch = .75f;
+		fanStartStop.spatialBlend = .75f;
 
 		flap = baseObj.AddComponent<AudioSource>();
 		flap.playOnAwake = false;
 		flap.loop = false;
 		flap.volume = 0f;
+		flap.spatialBlend = .5f;
+		flap.minDistance = 3f;
 	}
 
 	IEnumerator Inflate() {
