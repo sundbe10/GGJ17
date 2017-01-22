@@ -13,6 +13,15 @@ public class PlayerScript : MonoBehaviour {
 	private GameObject[] bodySegments;
 	public bool isInflating;
 
+	private Vector3[] currentVelocities;
+	private Vector3[] previousVelocities;
+	private Vector3[] deltaVelocities;
+	private Vector3 summedDeltas;
+	public Vector3 laggyDelta;
+	public float attackTime = 3f;
+	public float releaseTime = 3f;
+
+
 	// Use this for initialization
 	void Awake () {
 		isInflating = false;
@@ -20,22 +29,35 @@ public class PlayerScript : MonoBehaviour {
 		for (int i = 0; i < transform.childCount; ++i){
 			bodySegments[i] = transform.GetChild(i).gameObject;
 		}
+		currentVelocities = new Vector3[bodySegments.Length];
+		previousVelocities = new Vector3[bodySegments.Length];
+		deltaVelocities = new Vector3[bodySegments.Length];
+
+		laggyDelta = Vector3.zero;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(Input.GetButton("Jump_"+playerNum) && !isInflating && !isAi){
-			StartCoroutine(Inflate());
+		if(Input.GetButton("Jump_"+playerNum)){
+			isInflating = true;
 		}
 		else
-		{
-			StopAllCoroutines();
 			isInflating = false;
+
+		UpdateCharacter();
+
+		summedDeltas = Vector3.zero;
+		foreach (Vector3 v in deltaVelocities)
+		{
+			summedDeltas += v;
 		}
+
+		laggyDelta += summedDeltas*Time.deltaTime/attackTime;
+		laggyDelta -= laggyDelta*Time.deltaTime/releaseTime;
+
 	}
 
-	IEnumerator Inflate() {
-		isInflating = true;
+	void UpdateCharacter() {
 		int segmentCount = bodySegments.Length;
 		Vector3 previousSegmentUp = Vector3.up;
 
@@ -47,8 +69,12 @@ public class PlayerScript : MonoBehaviour {
 			GameObject bodysegment = bodySegments[i];
 			Rigidbody rb = bodysegment.GetComponent<Rigidbody>();
 
+
 			if (rb != null)
 			{
+				previousVelocities[i] = currentVelocities[i];
+				currentVelocities[i] = rb.velocity;
+				deltaVelocities[i] = currentVelocities[i] - previousVelocities[i];
 				float currentSegmentAlignment = Vector3.Dot(-bodysegment.transform.right.normalized, previousSegmentUp);
 				float segmentForceFactor = (1 - currentSegmentAlignment);
 				Vector3 totalForce = Vector3.up * upForce * segmentForceFactor +
@@ -56,15 +82,50 @@ public class PlayerScript : MonoBehaviour {
 						userVForce * horzForce;
 				rb.AddForce(totalForce);
 
-				//Debug.Log(i + " = " + segmentForceFactor + "  " + bodysegment.transform.up.normalized + " / " + Vector3.up);
-				previousSegmentUp = bodysegment.transform.up.normalized;
+				// Apply Inflation Physics
+				if (isInflating)
+				{
+					float currentSegmentAlignment = Vector3.Dot(-bodysegment.transform.right.normalized, previousSegmentUp);
+					float segmentForceFactor = (1 - currentSegmentAlignment);
+					Vector3 totalForce = Vector3.up * upForce * segmentForceFactor +
+										Vector3.forward * Input.GetAxis("Left_Stick_V_"+playerNum) * horzForce +
+										Vector3.right * Input.GetAxis("Left_Stick_H_"+playerNum) * horzForce;
+					rb.AddForce(totalForce);
+
+					previousSegmentUp = bodysegment.transform.up.normalized;
+				}
 			}
 			else
-				foreach (Rigidbody armSegment in bodysegment.GetComponentsInChildren<Rigidbody>())
+			{
+				Vector3 armVelocity = Vector3.zero;
+				Rigidbody[] armSegments = bodysegment.GetComponentsInChildren<Rigidbody>();
+				for (int j = 0; j < armSegments.Length; ++j)
 				{
-					armSegment.AddForce(transform.up * upForce * armForceFactor);
+					Rigidbody armSegment = armSegments[j];
+					armVelocity += armSegment.velocity;
+
+					// Apply Inflation Physics
+					if (isInflating)
+						armSegment.AddForce(transform.up * upForce * armForceFactor);
 				}
+				previousVelocities[i] = currentVelocities[i];
+				currentVelocities[i] = armVelocity;
+				deltaVelocities[i] = currentVelocities[i] - previousVelocities[i];
+			}
 		}
-		yield return null;
 	}
+
+//	void OnDrawGizmos() {
+//		if (deltaVelocities != null)
+//		{
+//			Gizmos.color = Color.blue;
+//			for (int i = 0; i < deltaVelocities.Length; ++i)
+//			{
+//				Gizmos.DrawLine(transform.position, transform.position+deltaVelocities[i]);
+//			}
+//
+//			Gizmos.color = Color.green;
+//			Gizmos.DrawLine(transform.position, transform.position+laggyDelta);
+//		}
+//	}
 }
