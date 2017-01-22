@@ -68,7 +68,7 @@ public class TubeManSound : MonoBehaviour {
 
 		// Flapping OneShots
 		float deltaSpeed = headVelocity - lastFrameHeadVelocity;
-		Debug.Log(deltaSpeed);
+		//Debug.Log(deltaSpeed);
 
 		if (deltaSpeed > 2.5 && !flap.isPlaying)
 		{
@@ -116,7 +116,7 @@ public class TubeManSound : MonoBehaviour {
 		{
 			offset = Mathf.Max(fanStartWave.samples - fanStartStop.timeSamples, 0)/3;
 			fanStartStop.Pause();
-			Debug.Log(offset);
+			//Debug.Log(offset);
 		}
 
 		fanStartStop.clip = fanStartWave;
@@ -155,7 +155,7 @@ public class TubeManSound : MonoBehaviour {
 		{
 			offset = (fanStartWave.samples - fanStartStop.timeSamples)/3;
 			fanStartStop.Pause();
-			Debug.Log(offset);
+			//Debug.Log(offset);
 		}
 
 		fanStartStop.clip = fanStopWave;
