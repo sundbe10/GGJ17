@@ -9,15 +9,13 @@ public class PlayerScript : MonoBehaviour {
 	public float armForceFactor = .05f;
 	public int playerNum = 1;
 	public bool isAi = false;
-	public bool isInflating;
-	public bool shouldInflate;
 
 	private GameObject[] bodySegments;
+	public bool isInflating;
 
 	// Use this for initialization
 	void Awake () {
 		isInflating = false;
-		shouldInflate = false;
 		bodySegments = new GameObject[transform.childCount];
 		for (int i = 0; i < transform.childCount; ++i){
 			bodySegments[i] = transform.GetChild(i).gameObject;
@@ -26,18 +24,18 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(Input.GetButton("Jump_"+playerNum) && !shouldInflate && !isAi){
+		if(Input.GetButton("Jump_"+playerNum) && !isInflating && !isAi){
 			StartCoroutine(Inflate());
 		}
 		else
 		{
 			StopAllCoroutines();
-			shouldInflate = false;
+			isInflating = false;
 		}
 	}
 
 	IEnumerator Inflate() {
-		shouldInflate = true;
+		isInflating = true;
 		int segmentCount = bodySegments.Length;
 		Vector3 previousSegmentUp = Vector3.up;
 
