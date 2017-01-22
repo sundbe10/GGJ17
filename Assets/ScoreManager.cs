@@ -7,10 +7,12 @@ public class ScoreManager : MonoBehaviour {
 	public float affectRadius;
 	private List<GameObject> audienceMembers;
 	private SphereCollider affectTrigger;
-	private int audienceLayer = 10;
+	private int audienceLayer = 12;
 	private PlayerScript playerScript = null;
 	private Transform baseTransform = null;
 	private List<GrabBonusScript> bonuses;
+
+	public float score;
 
 	// Use this for initialization
 	void Start () {
@@ -20,12 +22,14 @@ public class ScoreManager : MonoBehaviour {
 		playerScript = GetComponent<PlayerScript>();
 		baseTransform = playerScript.baseObject.transform;
 		bonuses = new List<GrabBonusScript>();
+		score = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		affectRadius -= Time.deltaTime;
 		affectRadius = Mathf.Max(affectRadius, playerScript.laggyDelta.magnitude);
+		affectRadius = Mathf.Min(affectRadius, 4f);
 
 		float bonusRadius = 0f;
 		// Bonus Objects
@@ -35,6 +39,11 @@ public class ScoreManager : MonoBehaviour {
 		}
 
 		affectTrigger.radius = Mathf.Lerp(affectTrigger.radius, bonusRadius + affectRadius, Time.deltaTime);
+
+		foreach(GameObject audienceMember in audienceMembers)
+		{
+			score += Time.deltaTime;
+		}
 	}
 
 	void OnDestory() {
@@ -52,13 +61,14 @@ public class ScoreManager : MonoBehaviour {
 			}
 	}
 
-	void OnTriggerEnter(Collider col) {
+	public void OnObjectEnter(Collider col) {
 		GameObject obj = col.gameObject;
+		Debug.Log(obj.layer);
 		if (obj.layer == audienceLayer && !audienceMembers.Contains(obj))
 			audienceMembers.Add(obj);
 	}
 
-	void OnTriggerExit(Collider col) {
+	public void OnObjectExit(Collider col) {
 		GameObject obj = col.gameObject;
 		if (obj.layer == audienceLayer && audienceMembers.Contains(obj))
 			audienceMembers.Remove(obj);
