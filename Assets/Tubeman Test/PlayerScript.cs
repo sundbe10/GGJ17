@@ -44,8 +44,16 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(!isAi){
+        for (int i = 0; i < 20; i++)
+        {
+            if (Input.GetKeyDown("joystick 1 button " + i))
+            {
+                print("joystick 1 button " + i);
+            }
+        }
+        if (!isAi){
 			if(Input.GetButton("Jump_"+playerNum)){
+                Debug.Log("test");
 				isInflating = true;
 			}
 			else{

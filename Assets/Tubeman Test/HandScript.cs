@@ -27,7 +27,7 @@ public class HandScript : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if(!isAi){
 			MoveHands();
 		}
@@ -69,8 +69,8 @@ public class HandScript : MonoBehaviour {
 		rigidBody.AddForce(Vector3.up * Input.GetAxis("Right_Stick_V_"+playerNum) * horzForce);
 		rigidBody.AddForce(Vector3.right * Input.GetAxis("Right_Stick_H_"+playerNum) * horzForce);
 
-		if ((hand == HandScript.Hand.LEFT && Input.GetAxis("Fire1_"+playerNum) < 0) ||
-			(hand == HandScript.Hand.RIGHT && Input.GetAxis("Fire2_"+playerNum) < 0))
+		if ((hand == HandScript.Hand.LEFT && Input.GetAxis("Fire1_"+playerNum) <= 0) ||
+			(hand == HandScript.Hand.RIGHT && Input.GetAxis("Fire2_"+playerNum) <= 0))
 		{
 			CharacterJoint[] joints = GetComponents<CharacterJoint>();
 			if (grabbedObject != null)

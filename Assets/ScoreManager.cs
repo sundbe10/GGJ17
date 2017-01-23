@@ -73,7 +73,6 @@ public class ScoreManager : MonoBehaviour {
 
 	public void OnObjectEnter(Collider col) {
 		GameObject obj = col.gameObject;
-		Debug.Log(obj.layer);
 		if (obj.layer == audienceLayer && !audienceMembers.Contains(obj))
 			audienceMembers.Add(obj);
 	}
