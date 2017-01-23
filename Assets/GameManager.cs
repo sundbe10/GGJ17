@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager> {
 
@@ -28,6 +29,10 @@ public class GameManager : Singleton<GameManager> {
 		switch(_state){
 		case State.ACTIVE:
 			CheckScores();
+			break;
+		case State.ENDED:
+			if (Input.GetButton("Submit"))
+				SceneManager.LoadScene("Scenes/Main");
 			break;
 		}
 	}
