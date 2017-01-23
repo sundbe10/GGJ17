@@ -31,8 +31,11 @@ public class GameManager : Singleton<GameManager> {
 			CheckScores();
 			break;
 		case State.ENDED:
-			if (Input.GetButton("Submit"))
+			if (Input.GetButton("Submit")){
+				_state = State.ACTIVE;
+				gameActive = true;
 				SceneManager.LoadScene("Scenes/Main");
+			}
 			break;
 		}
 	}
