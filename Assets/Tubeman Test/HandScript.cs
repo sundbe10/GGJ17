@@ -13,7 +13,7 @@ public class HandScript : MonoBehaviour {
 
 	int playerNum;
 	bool isAi;
-	LayerMask selfLayer;
+	int selfLayer;
 	Rigidbody rigidBody;
 
 	// Use this for initialization
@@ -34,7 +34,7 @@ public class HandScript : MonoBehaviour {
 	}
 
 	void OnTriggerStay (Collider col) {
-		if (col.gameObject.layer == selfLayer.value || isAi)
+		if (col.gameObject.layer == selfLayer || col.gameObject.layer == 11 || isAi)
 			return;
 		if ((hand == HandScript.Hand.LEFT && Input.GetAxis("Fire1_"+playerNum) > 0) ||
 			(hand == HandScript.Hand.RIGHT && Input.GetAxis("Fire2_"+playerNum) > 0))
