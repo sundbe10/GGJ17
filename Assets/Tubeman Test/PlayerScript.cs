@@ -118,6 +118,11 @@ public class PlayerScript : MonoBehaviour {
 		}
 	}
 
+	public void SetAI(){
+		isAi = true;
+		AIMove();
+	}
+
 	void AIMove(){
 		isInflating = true;
 		Invoke("AIRest", Random.Range(0.1f,2));

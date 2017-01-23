@@ -17,7 +17,8 @@ public class ScoreBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log(200*scoreManager.score/GameManager.score);
-		scoreBar.sizeDelta = new Vector2(200*scoreManager.score/GameManager.score,10);
+		if(GameManager.gameActive){
+			scoreBar.sizeDelta = new Vector2(200*scoreManager.score/GameManager.score,10);
+		}
 	}
 }
