@@ -13,7 +13,7 @@ public class GameManager : Singleton<GameManager> {
 
 	State _state = State.ACTIVE;
 
-	public static int score = 1000;
+	public static int score = 20;
 	public static bool gameActive = true;
 
 	GameObject[] players;
@@ -54,7 +54,7 @@ public class GameManager : Singleton<GameManager> {
 		WanderingCamera cameraWander =  GameObject.Find("CameraWander").GetComponent<WanderingCamera>();
 		cameraWander.enabled = true;
 		var lookTarget = GameObject.Find("Look Target").transform;
-		lookTarget.position = new Vector3(winner.transform.position.x, lookTarget.transform.position.y, winner.transform.position.z);
+		lookTarget.position = winner.transform.Find("body_components/base").transform.position + Vector3.up*2;
 		GameObject.Find("Winner").GetComponent<Image>().enabled = true;
 	}
 
