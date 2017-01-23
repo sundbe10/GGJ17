@@ -10,9 +10,8 @@ public class CrowdSound : MonoBehaviour {
 	public ScoreManager player1;
 	public ScoreManager player2;
 	float totalExcitement;
-
-	float lastFrameCount1;
-	float lastFrameCount2;
+	float cheerCooldown;
+	public bool canCheer;
 
 	// Audio Clips
 	public AudioClip[] cheers;
@@ -22,8 +21,8 @@ public class CrowdSound : MonoBehaviour {
 		applauseLight.volume = 0.5f;
 		applauseHeavy.volume = 0f;
 		totalExcitement = 0;
-		lastFrameCount1 = 0;
-		lastFrameCount2 = 0;
+		cheerCooldown = Random.Range(8f,12f);
+		canCheer = true;
 	}
 	
 	// Update is called once per frame
@@ -31,16 +30,15 @@ public class CrowdSound : MonoBehaviour {
 		float player1Count = (float)player1.audienceMembers.Count;
 		float player2Count = (float)player2.audienceMembers.Count;
 
-		float delta1 = player1Count - lastFrameCount1;
-		float delta2 = player2Count - lastFrameCount2;
 
-		if (delta1 > 7 || delta2 > 7)
+		if (player1Count > 7 || player2Count > 7)
 		{
-			if (!cheer.isPlaying)
+			if (!cheer.isPlaying && canCheer)
 			{
 				cheer.clip = cheers[Random.Range(0,cheers.Length-1)];
 				cheer.volume = Random.Range(.5f, .7f);
 				cheer.Play();
+				StartCoroutine(CheerCooldown());
 			}
 		}
 			
@@ -55,5 +53,14 @@ public class CrowdSound : MonoBehaviour {
 
 		applauseLight.volume = totalExcitement/2 + 0.3f;
 		applauseHeavy.volume = 0.7f * Mathf.Clamp(2*(totalExcitement-0.3f), 0f, 1f);
+	}
+
+	IEnumerator CheerCooldown()
+	{
+		canCheer = false;
+		yield return new WaitForSeconds(cheerCooldown);
+		canCheer = true;
+		cheerCooldown = Random.Range(8f,12f);
+		yield break;
 	}
 }

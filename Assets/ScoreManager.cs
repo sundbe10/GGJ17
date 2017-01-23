@@ -11,6 +11,7 @@ public class ScoreManager : MonoBehaviour {
 	private PlayerScript playerScript = null;
 	private Transform baseTransform = null;
 	private List<GrabBonusScript> bonuses;
+	private HandScript[] handscripts;
 
 	public float score;
 
@@ -23,6 +24,7 @@ public class ScoreManager : MonoBehaviour {
 		baseTransform = playerScript.baseObject.transform;
 		bonuses = new List<GrabBonusScript>();
 		score = 0;
+		handscripts = GetComponentsInChildren<HandScript>();
 	}
 	
 	// Update is called once per frame
@@ -30,6 +32,14 @@ public class ScoreManager : MonoBehaviour {
 		affectRadius -= Time.deltaTime;
 		affectRadius = Mathf.Max(affectRadius, playerScript.laggyDelta.magnitude);
 		affectRadius = Mathf.Min(affectRadius, 4f);
+
+		bool isAttached = false;
+		foreach (HandScript hand in handscripts)
+			if (hand.isAttached)
+				isAttached = true;
+
+		if (!isAttached)
+			bonuses.Clear();
 
 		float bonusRadius = 0f;
 		// Bonus Objects
