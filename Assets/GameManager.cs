@@ -13,7 +13,7 @@ public class GameManager : Singleton<GameManager> {
 
 	State _state = State.ACTIVE;
 
-	public static int score = 20;
+	public static int score = 500;
 	public static bool gameActive = true;
 
 	GameObject[] players;
