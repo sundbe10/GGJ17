@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour {
 
 	public float affectRadius;
-	private List<GameObject> audienceMembers;
+	public List<GameObject> audienceMembers;
 	private SphereCollider affectTrigger;
 	private int audienceLayer = 12;
 	private PlayerScript playerScript = null;
